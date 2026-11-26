@@ -2,6 +2,7 @@ import os
 import cv2
 import vizdoom as vzd
 from vizdoom import DoomGame, Mode
+from preprocessing import preprocess_frame
 
 game = DoomGame()
 
@@ -25,9 +26,20 @@ try:
         #(C, H, W) -> (H, W, C)
         screen = state.screen_buffer.transpose(1, 2, 0)
 
+        processed = preprocess_frame(screen)
+
+        print(
+            "original:", screen.shape,
+            "| processed:", processed.shape,
+            "| dtype:", processed.dtype,
+            "| min:", processed.min(),
+            "| max:", processed.max()
+        )
         
         #cv2.cvtColor(screen, cv2.COLOR_RGB2BGR) 
-        cv2.imshow("ScreenPredator - Agent Vision", screen)
+        cv2.imshow("doomai screen", screen)
+
+        cv2.imshow("doomai - processed", processed)
 
         key = cv2.waitKey(1) & 0xFF
         if key == ord("q"):

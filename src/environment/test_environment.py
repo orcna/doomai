@@ -14,9 +14,9 @@ game.init()
 
 buttons = game.get_available_buttons()
 num_buttons = len(buttons)
-print("Available buttons:", buttons)
+print("available buttons:", buttons)
 
-
+    
 def make_one_hot(index: int, size: int) -> list[int]:
     vec = [0] * size
     if 0 <= index < size:
@@ -47,10 +47,10 @@ for name, action in actions.items():
         reward = game.make_action(action, 4)
 
         print(
-            f"Step: {step + 1} | "
-            f"Reward: {reward} | "
-            f"Total: {game.get_total_reward()} | "
-            f"Frame shape: {screen.shape if screen is not None else None}"
+            f"step: {step + 1} | "
+            f"reward: {reward} | "
+            f"total: {game.get_total_reward()} | "
+            f"frame shape: {screen.shape if screen is not None else None}"
         )
 
     print("episode time:", game.get_episode_time())
